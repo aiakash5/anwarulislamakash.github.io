@@ -1,92 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anwarul Islam Akash — Nanofabrication & Ultrafast Optics</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#hero" class="nav-link">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-    <section id="hero" class="hero">
-      <h1 class="hero-title">Your Name</h1>
-      <p class="hero-tagline">Short tagline or role — e.g. Developer, Designer, Student</p>
-    </section>
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">A.I.AKASH</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <section id="about" class="about">
-      <h2 class="section-title">About Me</h2>
-      <div class="about-content">
-        <img src="assets/images/profile.svg" alt="Profile photo" class="about-photo" width="200" height="200">
-        <div class="about-text">
-          <p>Replace with your bio: background, interests, and what you do. You can mention skills, education, or goals here.</p>
-          <p>Add another paragraph if you like. Keep it concise so visitors get a quick sense of who you are.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <p class="hero-tag">PhD Candidate · Purdue University</p>
+      <h1 class="hero-name">Anwarul<br>Islam <em>Akash</em></h1>
+      <p class="hero-role">Ultrafast Lasers &amp; Nanofabrication</p>
+      <p class="hero-desc">Designing optical systems at the frontier of nanoscale manufacturing — pushing the resolution limits of light-based 3D printing through ultrafast laser physics and photochemical engineering.</p>
+      <div class="hero-ctas">
+        <a href="#research" class="btn btn-primary">View Research</a>
+        <a href="mailto:anwarulislam.akash5@gmail.com" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="laser-viz">
+        <svg viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="190" cy="190" r="120" fill="rgba(74,255,161,0.03)" />
+          <g class="orbit-ring">
+            <circle cx="190" cy="190" r="155" stroke="rgba(74,255,161,0.12)" stroke-width="1" stroke-dasharray="8 5"/>
+            <circle cx="345" cy="190" r="5" fill="rgba(74,255,161,0.6)" class="pulse-dot"/>
+          </g>
+          <g class="orbit-ring-rev">
+            <circle cx="190" cy="190" r="110" stroke="rgba(0,201,255,0.15)" stroke-width="1" stroke-dasharray="12 6"/>
+            <circle cx="190" cy="80" r="4" fill="rgba(0,201,255,0.8)" class="pulse-dot"/>
+          </g>
+          <g class="orbit-ring">
+            <circle cx="190" cy="190" r="70" stroke="rgba(74,255,161,0.2)" stroke-width="1"/>
+            <circle cx="260" cy="190" r="3" fill="var(--accent)"/>
+          </g>
+          <line x1="190" y1="190" x2="345" y2="190" stroke="rgba(74,255,161,0.15)" stroke-width="1"/>
+          <line x1="190" y1="190" x2="85" y2="85" stroke="rgba(0,201,255,0.12)" stroke-width="1"/>
+          <line x1="190" y1="190" x2="295" y2="85" stroke="rgba(74,255,161,0.1)" stroke-width="1"/>
+          <circle cx="190" cy="190" r="30" fill="rgba(74,255,161,0.06)" />
+          <circle cx="190" cy="190" r="18" fill="rgba(74,255,161,0.1)" />
+          <circle cx="190" cy="190" r="8" fill="rgba(74,255,161,0.7)" class="pulse-dot"/>
+          <line x1="0" y1="190" x2="380" y2="190" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <line x1="190" y1="0" x2="190" y2="380" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          <circle cx="190" cy="190" r="4" stroke="var(--accent)" stroke-width="1" fill="none"/>
+          <line x1="185" y1="190" x2="195" y2="190" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="190" y1="185" x2="190" y2="195" stroke="var(--accent)" stroke-width="1.5"/>
+          <path d="M20 20 L20 50 M20 20 L50 20" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
+          <path d="M360 20 L360 50 M360 20 L330 20" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
+          <path d="M20 360 L20 330 M20 360 L50 360" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
+          <path d="M360 360 L360 330 M360 360 L330 360" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
+          <text x="22" y="375" font-family="monospace" font-size="9" fill="rgba(74,255,161,0.4)">TWO-PHOTON POLYMERIZATION</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01 —</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a PhD candidate in Mechanical Engineering at Purdue University, working in the Birck Nanotechnology Center under Prof. Xianfan Xu. My research sits at the intersection of ultrafast laser physics, optical engineering, and nanoscale 3D fabrication.</p>
+      <p>My work centers on two-photon polymerization (2PP) — a technique that uses tightly focused femtosecond laser pulses to print 3D structures with nanometer-scale features. I build the physical systems, develop the photochemical models, and engineer new approaches to push the resolution and efficiency boundaries of what's possible.</p>
+      <p>Before Purdue, I spent four years in pharmaceutical manufacturing at Square Pharmaceuticals in Bangladesh, where I managed large-scale technical operations — an experience that shaped how I think about precision, reliability, and engineering under real-world constraints.</p>
+      <div class="contact-row">
+        <div class="contact-item"><span class="dot"></span><a href="mailto:anwarulislam.akash5@gmail.com">anwarulislam.akash5@gmail.com</a></div>
+        <div class="contact-item"><span class="dot"></span><span>(+1) 765-767-3838</span></div>
+        <div class="contact-item"><span class="dot"></span><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+        <div class="contact-item"><span class="dot"></span><a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer">Google Scholar</a></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Optical Sys. Design</div></div>
+        <div class="stat"><div class="stat-num">65nm</div><div class="stat-label">Feature Linewidth Achieved</div></div>
+        <div class="stat"><div class="stat-num">50%</div><div class="stat-label">fs Laser Power Reduction</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">First-Author Publications</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-header reveal">
+    <span class="section-num">02 —</span>
+    <h2 class="section-title">Research Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-list">
+
+    <div class="project-card reveal">
+      <div>
+        <div class="project-header">
+          <span class="project-index">P.01</span>
+          <h3 class="project-title">Dual-Laser 3D Printing for Efficient Nanofabrication</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Invented a novel two-photon polymerization approach combining a cost-effective visible laser with a femtosecond infrared source, significantly reducing fabrication cost and laser power requirements for complex 3D microstructures.</p>
+          <ul class="project-bullets">
+            <li>Reduced required femtosecond laser power by up to 50%, lowering the cost barrier for complex 3D microstructure fabrication.</li>
+            <li>Built a custom dual-laser (fs + ns) 3D printing platform integrating pulse-compression optics, electro-optic modulation, a piezo-actuated tip/tilt mirror, and a five-axis positioning stage.</li>
+            <li>Developed photochemical modeling and experimental validation to elucidate photopolymerization mechanisms and guide process optimization.</li>
+            <li>Featured in Optica, Phys.org, Science Daily, Purdue ME News, and 3dprinting.com.</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <section id="projects" class="projects">
-      <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
-        <article class="project-card">
-          <h3 class="project-title">Project One</h3>
-          <p class="project-description">Brief description of the project: what it does, technologies used, and your role.</p>
-          <div class="project-gallery">
-            <img src="assets/images/project1-1.svg" alt="Project One screenshot" class="project-image" data-lightbox>
-          </div>
-          <div class="project-video-wrap">
-            <video class="project-video" controls poster="assets/images/project1-poster.svg" preload="metadata">
-              <source src="assets/video/demo.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <h3 class="project-title">Project Two</h3>
-          <p class="project-description">Another project: describe the problem, solution, and outcome. You can add multiple images below.</p>
-          <div class="project-gallery">
-            <img src="assets/images/project2-1.svg" alt="Project Two screenshot 1" class="project-image" data-lightbox>
-            <img src="assets/images/project2-2.svg" alt="Project Two screenshot 2" class="project-image" data-lightbox>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <h3 class="project-title">Project Three</h3>
-          <p class="project-description">Third project summary. Optional: embed a YouTube or Vimeo video instead of self-hosted.</p>
-          <div class="project-gallery">
-            <img src="assets/images/project3-1.svg" alt="Project Three screenshot" class="project-image" data-lightbox>
-          </div>
-          <!-- Optional: paste YouTube/Vimeo embed iframe here -->
-        </article>
+      <div class="project-meta">
+        <span class="tag tag-green">TWO-PHOTON POLY.</span>
+        <span class="tag tag-blue">OPTICAL DESIGN</span>
+        <span class="tag tag-dim">BIRCK NANOTECH CENTER</span>
+        <p class="project-period">Aug 2022 – July 2024</p>
+        <div class="media-badge">📰 MEDIA FEATURED</div>
       </div>
-    </section>
+    </div>
 
-    <section id="contact" class="contact">
-      <h2 class="section-title">Contact</h2>
-      <p class="contact-text">Get in touch — add your preferred links and email.</p>
-      <ul class="contact-links">
-        <li><a href="mailto:you@example.com">Email</a></li>
-        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-      </ul>
-    </section>
-  </main>
+    <div class="project-card reveal">
+      <div>
+        <div class="project-header">
+          <span class="project-index">P.02</span>
+          <h3 class="project-title">Single-Source Photoinhibition Lithography</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Designed a single-color photoinhibition lithography system achieving greater than 20% resolution improvement and 65 nm linewidths — pushing nanofabrication toward the limits imposed by photophysics rather than optics.</p>
+          <ul class="project-bullets">
+            <li>Implemented custom pulse stretching and a vortex-phase inhibition beam, achieving &gt;20% resolution improvement over standard 2PP.</li>
+            <li>Built a custom prism compressor to stretch femtosecond pulses into the picosecond regime for precise temporal control.</li>
+            <li>Used a vortex phase plate to generate a doughnut-shaped inhibition beam, enabling sub-diffraction feature sizes down to 65 nm linewidths.</li>
+            <li>Performed precise spatial alignment and power synchronization of excitation and inhibition beams at the print plane.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="tag tag-green">PHOTOINHIBITION</span>
+        <span class="tag tag-blue">SUB-DIFFRACTION</span>
+        <span class="tag tag-dim">BIRCK NANOTECH CENTER</span>
+        <p class="project-period">May 2024 – Dec 2024</p>
+      </div>
+    </div>
 
-  <!-- Lightbox overlay -->
-  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
-    <button type="button" class="lightbox-close" aria-label="Close lightbox">&times;</button>
-    <img src="" alt="" class="lightbox-image" id="lightbox-image">
+    <div class="project-card reveal">
+      <div>
+        <div class="project-header">
+          <span class="project-index">P.03</span>
+          <h3 class="project-title">Geometric Accuracy in Projection Multiphoton Lithography</h3>
+        </div>
+        <div class="project-body">
+          <p class="project-desc">Enhancing DMD-based spatiotemporally focused projection lithography through optical modeling and secondary laser integration to improve geometric accuracy and layer uniformity at scale.</p>
+          <ul class="project-bullets">
+            <li>Modeled optical field propagation and photochemical kinetics in MATLAB to identify root causes of geometric distortions.</li>
+            <li>Developed compensation strategies achieving mean absolute error within 150 nm across printed structures.</li>
+            <li>Integrated secondary laser modulation to improve layer uniformity in projection-based 2PP systems.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="tag tag-green">PROJECTION LITHO.</span>
+        <span class="tag tag-blue">DMD OPTICS</span>
+        <span class="tag tag-dim">ONGOING</span>
+        <p class="project-period">Jan 2025 – Present</p>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-header reveal">
+    <span class="section-num">03 —</span>
+    <h2 class="section-title">Publications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="pubs-list reveal">
+    <div class="pub-card">
+      <div class="pub-num">1</div>
+      <div class="pub-content">
+        <p class="pub-title">First-authored publication on dual-laser nanofabrication combining visible and femtosecond infrared sources for two-photon polymerization</p>
+        <p class="pub-journal">OPTICS EXPRESS</p>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-num">2</div>
+      <div class="pub-content">
+        <p class="pub-title">First-authored publication on photoinhibition lithography achieving enhanced linewidth resolution with single-color excitation</p>
+        <p class="pub-journal">ADVANCED OPTICAL MATERIALS</p>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div class="pub-num">3</div>
+      <div class="pub-content">
+        <p class="pub-title">Conference presentation on ultrafast laser-based nanofabrication methods and optical system design</p>
+        <p class="pub-journal">SPIE CONFERENCE PROCEEDINGS</p>
+      </div>
+    </div>
+  </div>
+  <p class="pubs-footer">→ Full citations available on <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer">Google Scholar</a></p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">04 —</span>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <p class="skill-group-title">Laser Systems</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Ti:Sapphire Oscillators</span>
+        <span class="skill-tag">CPA Systems</span>
+        <span class="skill-tag">Micra-5 / Micra-10</span>
+        <span class="skill-tag">Mira 900</span>
+        <span class="skill-tag">Legend Elite Duo-USX</span>
+        <span class="skill-tag">Nd:YLF Lasers</span>
+        <span class="skill-tag">Fiber Lasers</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Optical Techniques</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Microscopy</span>
+        <span class="skill-tag">Autocorrelation</span>
+        <span class="skill-tag">Interferometry</span>
+        <span class="skill-tag">EOM</span>
+        <span class="skill-tag">Lock-in Amplifier</span>
+        <span class="skill-tag">Pulse Compressors</span>
+        <span class="skill-tag">Photodetectors</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Fabrication</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Nanoscribe GT2</span>
+        <span class="skill-tag">SEM</span>
+        <span class="skill-tag">Sputter Deposition</span>
+        <span class="skill-tag">Spin Coating</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Modeling & Simulation</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Fourier Optics</span>
+        <span class="skill-tag">Photochemical Sim.</span>
+        <span class="skill-tag">Zemax Ray Tracing</span>
+        <span class="skill-tag">COMSOL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Programming</p>
+      <div class="skill-tags">
+        <span class="skill-tag">MATLAB</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">LabVIEW</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-title">Tools & Software</p>
+      <div class="skill-tags">
+        <span class="skill-tag">SolidWorks</span>
+        <span class="skill-tag">Autodesk Fusion 360</span>
+        <span class="skill-tag">Cura / Slic3r</span>
+        <span class="skill-tag">OriginLab</span>
+        <span class="skill-tag">ImageJ</span>
+        <span class="skill-tag">SAP MM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRY -->
+<section id="industry">
+  <div class="section-header reveal">
+    <span class="section-num">05 —</span>
+    <h2 class="section-title">Industry Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="industry-card reveal">
+    <div>
+      <h3 class="industry-title">Executive, Technical Services Department</h3>
+      <p class="industry-org">SQUARE PHARMACEUTICALS LTD. · BANGLADESH</p>
+      <ul class="project-bullets">
+        <li>Supervised commissioning, validation, and maintenance of key manufacturing utilities — purified water systems, HVAC, Ayurvedic extraction units, and semisolid production lines.</li>
+        <li>Managed procurement, technical sourcing, and vendor evaluation for capital equipment across full pharmaceutical production workflows: dispensing, granulation, compression, encapsulation, filling, and packaging.</li>
+        <li>Improved operational reliability and efficiency across multidisciplinary manufacturing environments.</li>
+      </ul>
+    </div>
+    <div class="industry-meta">
+      <span class="tag tag-dim">INDUSTRY</span>
+      <p class="project-period">May 2018 – July 2022</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <span class="section-num">06 —</span>
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-section reveal">
+    <p class="contact-intro">I'm always open to discussing research collaborations, optical systems, nanofabrication challenges, or new opportunities. Feel free to reach out.</p>
+    <div class="contact-ctas">
+      <a href="mailto:anwarulislam.akash5@gmail.com" class="btn btn-primary">✉ Send an Email</a>
+      <div class="contact-links-wrap">
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Google Scholar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-text">© 2025 Anwarul Islam Akash · Purdue University</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="mailto:anwarulislam.akash5@gmail.com">Contact</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
