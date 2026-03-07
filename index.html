@@ -1,847 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anwarul Islam Akash — Nanofabrication & Ultrafast Optics</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0b0f0e;
-      --bg2: #111816;
-      --card: #141c1a;
-      --border: #1e2b28;
-      --accent: #4affa1;
-      --accent2: #00c9ff;
-      --text: #e8f0ee;
-      --muted: #7a9990;
-      --dim: #3a504b;
-    }
-
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(11,15,14,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-    }
-    .nav-logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 8rem 4rem 4rem;
-      position: relative;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .hero-left { display: flex; flex-direction: column; justify-content: center; }
-    .hero-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
-    }
-    .hero-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
-    }
-    .hero-name em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .hero-role {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.85rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
-    }
-    .hero-desc {
-      font-size: 1rem;
-      color: #b0c8c0;
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
-    }
-    .hero-ctas {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 1s forwards;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.75rem 1.6rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.25s;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #0b0f0e;
-      border: none;
-    }
-    .btn-primary:hover { background: #6fffb5; transform: translateY(-2px); }
-    .btn-ghost {
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--dim);
-    }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-    /* hero right — abstract laser viz */
-    .hero-right {
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      animation: fadeIn 1.2s 0.6s forwards;
-    }
-    .laser-viz {
-      width: 380px; height: 380px;
-      position: relative;
-    }
-    .laser-viz svg { width: 100%; height: 100%; }
-
-    /* ── SECTION BASE ── */
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 5rem 4rem;
-    }
-    .section-header {
-      display: flex; align-items: baseline; gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-    .section-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-    }
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      color: var(--text);
-    }
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .about-text p {
-      color: #b0c8c0;
-      margin-bottom: 1.2rem;
-      font-size: 0.95rem;
-    }
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .stat {
-      background: var(--card);
-      padding: 1.8rem;
-    }
-    .stat-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.4rem;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-    .contact-row {
-      margin-top: 2rem;
-      display: flex; flex-direction: column; gap: 0.6rem;
-    }
-    .contact-item {
-      display: flex; align-items: center; gap: 0.8rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-    .contact-item a { color: var(--muted); text-decoration: none; }
-    .contact-item a:hover { color: var(--accent); }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
-    /* ── RESEARCH ── */
-    .projects-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .project-card {
-      background: var(--card);
-      padding: 2.5rem;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      gap: 2rem;
-      align-items: start;
-      transition: background 0.25s;
-      cursor: default;
-    }
-    .project-card:hover { background: #192420; }
-    .project-header {
-      display: flex; align-items: flex-start; gap: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .project-index {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--dim);
-      margin-top: 0.25rem;
-      letter-spacing: 0.1em;
-    }
-    .project-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .project-body { padding-left: 2.5rem; }
-    .project-desc {
-      color: #8aada5;
-      font-size: 0.88rem;
-      margin-bottom: 1rem;
-    }
-    .project-bullets {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .project-bullets li {
-      font-size: 0.82rem;
-      color: #7a9990;
-      padding-left: 1.2rem;
-      position: relative;
-    }
-    .project-bullets li::before {
-      content: '▸';
-      position: absolute; left: 0;
-      color: var(--accent);
-      font-size: 0.65rem;
-      top: 0.15rem;
-    }
-    .project-meta {
-      display: flex; flex-direction: column; gap: 0.8rem;
-      align-items: flex-end;
-    }
-    .tag {
-      display: inline-block;
-      padding: 0.25rem 0.7rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      border-radius: 2px;
-    }
-    .tag-green { background: rgba(74,255,161,0.1); color: var(--accent); border: 1px solid rgba(74,255,161,0.2); }
-    .tag-blue  { background: rgba(0,201,255,0.08); color: var(--accent2); border: 1px solid rgba(0,201,255,0.15); }
-    .tag-dim   { background: rgba(255,255,255,0.04); color: var(--muted); border: 1px solid var(--border); }
-    .project-period {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--dim);
-      text-align: right;
-    }
-    .media-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6rem;
-      color: #e8b84b;
-      border: 1px solid rgba(232,184,75,0.3);
-      background: rgba(232,184,75,0.06);
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-      text-align: center;
-    }
-
-    /* ── PUBLICATIONS ── */
-    .pubs-list { display: flex; flex-direction: column; gap: 1rem; }
-    .pub-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.8rem 2rem;
-      display: flex; gap: 1.5rem;
-      align-items: flex-start;
-      transition: border-color 0.2s;
-    }
-    .pub-card:hover { border-color: var(--accent); }
-    .pub-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.8rem;
-      color: var(--dim);
-      line-height: 1;
-      flex-shrink: 0;
-      width: 2rem;
-      text-align: right;
-    }
-    .pub-content { flex: 1; }
-    .pub-title {
-      font-size: 0.92rem;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-      line-height: 1.4;
-    }
-    .pub-journal {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-
-    /* ── SKILLS ── */
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-    .skill-group {
-      background: var(--card);
-      padding: 2rem;
-    }
-    .skill-group-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-    }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      padding: 0.3rem 0.7rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      border-radius: 2px;
-    }
-
-    /* ── INDUSTRY ── */
-    .industry-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 2rem;
-    }
-    .industry-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
-    }
-    .industry-org {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent2);
-      letter-spacing: 0.08em;
-      margin-bottom: 1.2rem;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .footer-text {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--dim);
-    }
-    .footer-links { display: flex; gap: 2rem; }
-    .footer-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--dim);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-    }
-    .footer-links a:hover { color: var(--accent); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes rotateSlow {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-    @keyframes pulseGlow {
-      0%, 100% { filter: drop-shadow(0 0 4px var(--accent)); }
-      50%       { filter: drop-shadow(0 0 14px var(--accent)); }
-    }
-    .orbit-ring { animation: rotateSlow 18s linear infinite; transform-origin: center; }
-    .orbit-ring-rev { animation: rotateSlow 28s linear infinite reverse; transform-origin: center; }
-    .pulse-dot { animation: pulseGlow 2.5s ease-in-out infinite; }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 2rem; }
-      .hero { padding: 7rem 2rem 3rem; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-right { display: none; }
-      section { padding: 4rem 2rem; }
-      .about-grid { grid-template-columns: 1fr; }
-      .project-card { grid-template-columns: 1fr; }
-      .project-meta { align-items: flex-start; flex-direction: row; flex-wrap: wrap; padding-left: 2.5rem; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .industry-card { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 1rem; padding: 2rem; }
-    }
-    @media (max-width: 560px) {
-      .about-stats { grid-template-columns: 1fr 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
 
-<!-- NAV -->
-<nav>
-  <span class="nav-logo">A.I.AKASH</span>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <main>
+    <section id="hero" class="hero">
+      <h1 class="hero-title">Your Name</h1>
+      <p class="hero-tagline">Short tagline or role — e.g. Developer, Designer, Student</p>
+    </section>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <p class="hero-tag">PhD Candidate · Purdue University</p>
-      <h1 class="hero-name">Anwarul<br>Islam <em>Akash</em></h1>
-      <p class="hero-role">Ultrafast Lasers &amp; Nanofabrication</p>
-      <p class="hero-desc">Designing optical systems at the frontier of nanoscale manufacturing — pushing the resolution limits of light-based 3D printing through ultrafast laser physics and photochemical engineering.</p>
-      <div class="hero-ctas">
-        <a href="#research" class="btn btn-primary">View Research</a>
-        <a href="mailto:anwarulislam.akash5@gmail.com" class="btn btn-ghost">Get in Touch</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="laser-viz">
-        <svg viewBox="0 0 380 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Background glow -->
-          <circle cx="190" cy="190" r="120" fill="rgba(74,255,161,0.03)" />
-          <!-- Outer orbit ring -->
-          <g class="orbit-ring">
-            <circle cx="190" cy="190" r="155" stroke="rgba(74,255,161,0.12)" stroke-width="1" stroke-dasharray="8 5"/>
-            <circle cx="345" cy="190" r="5" fill="rgba(74,255,161,0.6)" class="pulse-dot"/>
-          </g>
-          <!-- Middle orbit ring -->
-          <g class="orbit-ring-rev">
-            <circle cx="190" cy="190" r="110" stroke="rgba(0,201,255,0.15)" stroke-width="1" stroke-dasharray="12 6"/>
-            <circle cx="190" cy="80" r="4" fill="rgba(0,201,255,0.8)" class="pulse-dot"/>
-          </g>
-          <!-- Inner ring -->
-          <g class="orbit-ring">
-            <circle cx="190" cy="190" r="70" stroke="rgba(74,255,161,0.2)" stroke-width="1"/>
-            <circle cx="260" cy="190" r="3" fill="var(--accent)"/>
-          </g>
-          <!-- Laser beams from center -->
-          <line x1="190" y1="190" x2="345" y2="190" stroke="rgba(74,255,161,0.15)" stroke-width="1"/>
-          <line x1="190" y1="190" x2="85" y2="85" stroke="rgba(0,201,255,0.12)" stroke-width="1"/>
-          <line x1="190" y1="190" x2="295" y2="85" stroke="rgba(74,255,161,0.1)" stroke-width="1"/>
-          <!-- Central glow core -->
-          <circle cx="190" cy="190" r="30" fill="rgba(74,255,161,0.06)" />
-          <circle cx="190" cy="190" r="18" fill="rgba(74,255,161,0.1)" />
-          <circle cx="190" cy="190" r="8" fill="rgba(74,255,161,0.7)" class="pulse-dot"/>
-          <!-- Grid lines -->
-          <line x1="0" y1="190" x2="380" y2="190" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <line x1="190" y1="0" x2="190" y2="380" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-          <!-- Crosshairs -->
-          <circle cx="190" cy="190" r="4" stroke="var(--accent)" stroke-width="1" fill="none"/>
-          <line x1="185" y1="190" x2="195" y2="190" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="190" y1="185" x2="190" y2="195" stroke="var(--accent)" stroke-width="1.5"/>
-          <!-- Corner brackets -->
-          <path d="M20 20 L20 50 M20 20 L50 20" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
-          <path d="M360 20 L360 50 M360 20 L330 20" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
-          <path d="M20 360 L20 330 M20 360 L50 360" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
-          <path d="M360 360 L360 330 M360 360 L330 360" stroke="rgba(74,255,161,0.3)" stroke-width="1.5"/>
-          <!-- Label -->
-          <text x="22" y="375" font-family="monospace" font-size="9" fill="rgba(74,255,161,0.4)">TWO-PHOTON POLYMERIZATION</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header reveal">
-    <span class="section-num">01 —</span>
-    <h2 class="section-title">About</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>I'm a PhD candidate in Mechanical Engineering at Purdue University, working in the Birck Nanotechnology Center under Prof. Xianfan Xu. My research sits at the intersection of ultrafast laser physics, optical engineering, and nanoscale 3D fabrication.</p>
-      <p>My work centers on two-photon polymerization (2PP) — a technique that uses tightly focused femtosecond laser pulses to print 3D structures with nanometer-scale features. I build the physical systems, develop the photochemical models, and engineer new approaches to push the resolution and efficiency boundaries of what's possible.</p>
-      <p>Before Purdue, I spent four years in pharmaceutical manufacturing at Square Pharmaceuticals in Bangladesh, where I managed large-scale technical operations — an experience that shaped how I think about precision, reliability, and engineering under real-world constraints.</p>
-      <div class="contact-row">
-        <div class="contact-item"><span class="dot"></span><a href="mailto:anwarulislam.akash5@gmail.com">anwarulislam.akash5@gmail.com</a></div>
-        <div class="contact-item"><span class="dot"></span><span>(+1) 765-767-3838</span></div>
-        <div class="contact-item"><span class="dot"></span><a href="https://www.linkedin.com/in/anwarulislamakash/" target="_blank">LinkedIn</a></div>
-        <div class="contact-item"><span class="dot"></span><a href="https://scholar.google.com/citations?user=i2N_IFYAAAAJ&hl=en&authuser=4" target="_blank">Google Scholar</a></div>
-      </div>
-    </div>
-    <div class="reveal">
-      <div class="about-stats">
-        <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Optical Sys. Design</div></div>
-        <div class="stat"><div class="stat-num">65nm</div><div class="stat-label">Feature Linewidth Achieved</div></div>
-        <div class="stat"><div class="stat-num">50%</div><div class="stat-label">fs Laser Power Reduction</div></div>
-        <div class="stat"><div class="stat-num">2</div><div class="stat-label">First-Author Publications</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- RESEARCH -->
-<section id="research">
-  <div class="section-header reveal">
-    <span class="section-num">02 —</span>
-    <h2 class="section-title">Research Projects</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="projects-list">
-
-    <!-- Project 1 -->
-    <div class="project-card reveal">
-      <div>
-        <div class="project-header">
-          <span class="project-index">P.01</span>
-          <h3 class="project-title">Dual-Laser 3D Printing for Efficient Nanofabrication</h3>
-        </div>
-        <div class="project-body">
-          <p class="project-desc">Invented a novel two-photon polymerization approach combining a cost-effective visible laser with a femtosecond infrared source, significantly reducing fabrication cost and laser power requirements for complex 3D microstructures.</p>
-          <ul class="project-bullets">
-            <li>Reduced required femtosecond laser power by up to 50%, lowering the cost barrier for complex 3D microstructure fabrication.</li>
-            <li>Built a custom dual-laser (fs + ns) 3D printing platform integrating pulse-compression optics, electro-optic modulation, a piezo-actuated tip/tilt mirror, and a five-axis positioning stage.</li>
-            <li>Developed photochemical modeling and experimental validation to elucidate photopolymerization mechanisms and guide process optimization.</li>
-            <li>Featured in Optica, Phys.org, Science Daily, Purdue ME News, and 3dprinting.com.</li>
-          </ul>
+    <section id="about" class="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <img src="assets/images/profile.svg" alt="Profile photo" class="about-photo" width="200" height="200">
+        <div class="about-text">
+          <p>Replace with your bio: background, interests, and what you do. You can mention skills, education, or goals here.</p>
+          <p>Add another paragraph if you like. Keep it concise so visitors get a quick sense of who you are.</p>
         </div>
       </div>
-      <div class="project-meta">
-        <span class="tag tag-green">TWO-PHOTON POLY.</span>
-        <span class="tag tag-blue">OPTICAL DESIGN</span>
-        <span class="tag tag-dim">BIRCK NANOTECH CENTER</span>
-        <p class="project-period">Aug 2022 – July 2024</p>
-        <div class="media-badge">📰 MEDIA FEATURED</div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Project 2 -->
-    <div class="project-card reveal">
-      <div>
-        <div class="project-header">
-          <span class="project-index">P.02</span>
-          <h3 class="project-title">Single-Source Photoinhibition Lithography</h3>
-        </div>
-        <div class="project-body">
-          <p class="project-desc">Designed a single-color photoinhibition lithography system achieving greater than 20% resolution improvement and 65 nm linewidths — pushing nanofabrication toward the limits imposed by photophysics rather than optics.</p>
-          <ul class="project-bullets">
-            <li>Implemented custom pulse stretching and a vortex-phase inhibition beam, achieving &gt;20% resolution improvement over standard 2PP.</li>
-            <li>Built a custom prism compressor to stretch femtosecond pulses into the picosecond regime for precise temporal control.</li>
-            <li>Used a vortex phase plate to generate a doughnut-shaped inhibition beam, enabling sub-diffraction feature sizes down to 65 nm linewidths.</li>
-            <li>Performed precise spatial alignment and power synchronization of excitation and inhibition beams at the print plane.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="tag tag-green">PHOTOINHIBITION</span>
-        <span class="tag tag-blue">SUB-DIFFRACTION</span>
-        <span class="tag tag-dim">BIRCK NANOTECH CENTER</span>
-        <p class="project-period">May 2024 – Dec 2024</p>
-      </div>
-    </div>
+    <section id="projects" class="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3 class="project-title">Project One</h3>
+          <p class="project-description">Brief description of the project: what it does, technologies used, and your role.</p>
+          <div class="project-gallery">
+            <img src="assets/images/project1-1.svg" alt="Project One screenshot" class="project-image" data-lightbox>
+          </div>
+          <div class="project-video-wrap">
+            <video class="project-video" controls poster="assets/images/project1-poster.svg" preload="metadata">
+              <source src="assets/video/demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </article>
 
-    <!-- Project 3 -->
-    <div class="project-card reveal">
-      <div>
-        <div class="project-header">
-          <span class="project-index">P.03</span>
-          <h3 class="project-title">Geometric Accuracy in Projection Multiphoton Lithography</h3>
-        </div>
-        <div class="project-body">
-          <p class="project-desc">Enhancing DMD-based spatiotemporally focused projection lithography through optical modeling and secondary laser integration to improve geometric accuracy and layer uniformity at scale.</p>
-          <ul class="project-bullets">
-            <li>Modeled optical field propagation and photochemical kinetics in MATLAB to identify root causes of geometric distortions.</li>
-            <li>Developed compensation strategies achieving mean absolute error within 150 nm across printed structures.</li>
-            <li>Integrated secondary laser modulation to improve layer uniformity in projection-based 2PP systems.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="project-meta">
-        <span class="tag tag-green">PROJECTION LITHO.</span>
-        <span class="tag tag-blue">DMD OPTICS</span>
-        <span class="tag tag-dim">ONGOING</span>
-        <p class="project-period">Jan 2025 – Present</p>
-      </div>
-    </div>
+        <article class="project-card">
+          <h3 class="project-title">Project Two</h3>
+          <p class="project-description">Another project: describe the problem, solution, and outcome. You can add multiple images below.</p>
+          <div class="project-gallery">
+            <img src="assets/images/project2-1.svg" alt="Project Two screenshot 1" class="project-image" data-lightbox>
+            <img src="assets/images/project2-2.svg" alt="Project Two screenshot 2" class="project-image" data-lightbox>
+          </div>
+        </article>
 
-  </div>
-</section>
+        <article class="project-card">
+          <h3 class="project-title">Project Three</h3>
+          <p class="project-description">Third project summary. Optional: embed a YouTube or Vimeo video instead of self-hosted.</p>
+          <div class="project-gallery">
+            <img src="assets/images/project3-1.svg" alt="Project Three screenshot" class="project-image" data-lightbox>
+          </div>
+          <!-- Optional: paste YouTube/Vimeo embed iframe here -->
+        </article>
+      </div>
+    </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="section-header reveal">
-    <span class="section-num">03 —</span>
-    <h2 class="section-title">Publications</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="pubs-list reveal">
-    <div class="pub-card">
-      <div class="pub-num">1</div>
-      <div class="pub-content">
-        <p class="pub-title">First-authored publication on dual-laser nanofabrication combining visible and femtosecond infrared sources for two-photon polymerization</p>
-        <p class="pub-journal">OPTICS EXPRESS</p>
-      </div>
-    </div>
-    <div class="pub-card">
-      <div class="pub-num">2</div>
-      <div class="pub-content">
-        <p class="pub-title">First-authored publication on photoinhibition lithography achieving enhanced linewidth resolution with single-color excitation</p>
-        <p class="pub-journal">ADVANCED OPTICAL MATERIALS</p>
-      </div>
-    </div>
-    <div class="pub-card">
-      <div class="pub-num">3</div>
-      <div class="pub-content">
-        <p class="pub-title">Conference presentation on ultrafast laser-based nanofabrication methods and optical system design</p>
-        <p class="pub-journal">SPIE CONFERENCE PROCEEDINGS</p>
-      </div>
-    </div>
-  </div>
-  <p style="margin-top:1.5rem; font-family:'DM Mono',monospace; font-size:0.72rem; color:var(--muted);">→ Full citations available on <a href="https://scholar.google.com" target="_blank" style="color:var(--accent); text-decoration:none;">Google Scholar</a></p>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header reveal">
-    <span class="section-num">04 —</span>
-    <h2 class="section-title">Technical Skills</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="skills-grid reveal">
-    <div class="skill-group">
-      <p class="skill-group-title">Laser Systems</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Ti:Sapphire Oscillators</span>
-        <span class="skill-tag">CPA Systems</span>
-        <span class="skill-tag">Micra-5 / Micra-10</span>
-        <span class="skill-tag">Mira 900</span>
-        <span class="skill-tag">Legend Elite Duo-USX</span>
-        <span class="skill-tag">Nd:YLF Lasers</span>
-        <span class="skill-tag">Fiber Lasers</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-title">Optical Techniques</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Microscopy</span>
-        <span class="skill-tag">Autocorrelation</span>
-        <span class="skill-tag">Interferometry</span>
-        <span class="skill-tag">EOM</span>
-        <span class="skill-tag">Lock-in Amplifier</span>
-        <span class="skill-tag">Pulse Compressors</span>
-        <span class="skill-tag">Photodetectors</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-title">Fabrication</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Nanoscribe GT2</span>
-        <span class="skill-tag">SEM</span>
-        <span class="skill-tag">Sputter Deposition</span>
-        <span class="skill-tag">Spin Coating</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-title">Modeling & Simulation</p>
-      <div class="skill-tags">
-        <span class="skill-tag">Fourier Optics</span>
-        <span class="skill-tag">Photochemical Sim.</span>
-        <span class="skill-tag">Zemax Ray Tracing</span>
-        <span class="skill-tag">COMSOL</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-title">Programming</p>
-      <div class="skill-tags">
-        <span class="skill-tag">MATLAB</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">LabVIEW</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-title">Tools & Software</p>
-      <div class="skill-tags">
-        <span class="skill-tag">SolidWorks</span>
-        <span class="skill-tag">Autodesk Fusion 360</span>
-        <span class="skill-tag">Cura / Slic3r</span>
-        <span class="skill-tag">OriginLab</span>
-        <span class="skill-tag">ImageJ</span>
-        <span class="skill-tag">SAP MM</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INDUSTRY -->
-<section>
-  <div class="section-header reveal">
-    <span class="section-num">05 —</span>
-    <h2 class="section-title">Industry Experience</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="industry-card reveal">
-    <div>
-      <h3 class="industry-title">Executive, Technical Services Department</h3>
-      <p class="industry-org">SQUARE PHARMACEUTICALS LTD. · BANGLADESH</p>
-      <ul class="project-bullets">
-        <li>Supervised commissioning, validation, and maintenance of key manufacturing utilities — purified water systems, HVAC, Ayurvedic extraction units, and semisolid production lines.</li>
-        <li>Managed procurement, technical sourcing, and vendor evaluation for capital equipment across full pharmaceutical production workflows: dispensing, granulation, compression, encapsulation, filling, and packaging.</li>
-        <li>Improved operational reliability and efficiency across multidisciplinary manufacturing environments.</li>
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-text">Get in touch — add your preferred links and email.</p>
+      <ul class="contact-links">
+        <li><a href="mailto:you@example.com">Email</a></li>
+        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       </ul>
-    </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem;justify-content:flex-start;">
-      <span class="tag tag-dim">INDUSTRY</span>
-      <p class="project-period">May 2018 – July 2022</p>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-header reveal">
-    <span class="section-num">06 —</span>
-    <h2 class="section-title">Get in Touch</h2>
-    <div class="section-line"></div>
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button type="button" class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <img src="" alt="" class="lightbox-image" id="lightbox-image">
   </div>
-  <div class="reveal" style="max-width:600px;">
-    <p style="color:#8aada5;font-size:0.95rem;margin-bottom:2rem;">I'm always open to discussing research collaborations, optical systems, nanofabrication challenges, or new opportunities. Feel free to reach out.</p>
-    <div style="display:flex;flex-direction:column;gap:1rem;">
-      <a href="mailto:anwarulislam.akash5@gmail.com" class="btn btn-primary" style="width:fit-content;">✉ Send an Email</a>
-      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-        <a href="https://linkedin.com" target="_blank" class="btn btn-ghost">LinkedIn</a>
-        <a href="https://scholar.google.com" target="_blank" class="btn btn-ghost">Google Scholar</a>
-      </div>
-    </div>
-  </div>
-</section>
 
-<footer>
-  <p class="footer-text">© 2025 Anwarul Islam Akash · Purdue University</p>
-  <div class="footer-links">
-    <a href="#about">About</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="mailto:anwarulislam.akash5@gmail.com">Contact</a>
-  </div>
-</footer>
-
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
-</script>
+  <script src="script.js"></script>
 </body>
 </html>

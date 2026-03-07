@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="315" viewBox="0 0 560 315">
+  <rect width="560" height="315" fill="#1f2937"/>
+  <polygon points="250,130 250,185 310,157.5" fill="#9ca3af"/>
+  <text x="280" y="230" font-family="system-ui,sans-serif" font-size="14" fill="#9ca3af" text-anchor="middle">Video poster</text>
+</svg>
