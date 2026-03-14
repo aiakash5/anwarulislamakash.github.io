@@ -185,12 +185,13 @@ section { max-width: 720px; margin: 0 auto; padding: 4rem 2rem; }
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 6px; padding: 0.75rem; overflow: hidden;
   min-height: 140px;
+  /*min-width: 0; /* allow grid cell to constrain width so img can fill */
 }
 .project-image-inset {
-  max-width: 100%; max-height: 200px;
-  width: auto; height: auto;
-  display: block; margin: 0 auto;
-  object-fit: contain;
+  width: 100%; height: auto;
+  /*max-height: 200px; /* optional: cap height; remove to let it scale fully */
+  display: block; object-fit: contain;
+  /*min-width: 0; /* allow img to fill flex container width */
 }
 
 /* ── FULL-WIDTH FIGURES ── */
